@@ -28,7 +28,7 @@ source ~/.bashrc
 #####	*Note ensure the url is up-to-date in the curl command below by going to the raw view of the node_reload_helper.sh file in the repo and copying the link.
 ```bash
 # Curl the helper script to added the node_reload utility directly to your path.
-curl -sSL https://raw.github.ibm.com/National-Northeast-1/Cp4d-Cpdcli-Install/master/cpd_install_helper.sh?token=AACTOHK27MZIGVG66VKYJJTDENRKC | bash
+curl -sSL https://raw.github.ibm.com/National-Northeast-1/Node-Reloader/main/node_reload_helper.sh?token=AACTOHPCNEDMCZZHUUODJRDDEOOBE | bash
 
 # Source your profile
 source ~/.bashrc
