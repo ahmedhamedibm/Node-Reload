@@ -34,6 +34,9 @@ curl -sSL https://raw.github.ibm.com/National-Northeast-1/Node-Reloader/main/nod
 source ~/.bashrc
 
 ```
+## Prerequisite
+Must have python 3.6 or newer.
+
 ## Usage
 After installation or pulling the repo.
 
