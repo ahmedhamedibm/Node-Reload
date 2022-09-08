@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+
+import subprocess
+import json
+import argparse
+from os import system
+import time
+
+parser = argparse.ArgumentParser(formatter_class=argparse.ArgumentDefaultsHelpFormatter)
+parser.add_argument('server',  help="Please enter a cluster server url.")
+args = parser.parse_args()
+
+
+
+def node_reload(server_url):
+    print("---> Reloading Cluster Nodes...")
+    ibm_cluster, nodes = get_nodes(server_url)
+    for node in nodes:
+        system(f'ibmcloud ks worker reload --cluster {ibm_cluster} --worker {node} -f')
+    for node in nodes:
+        while json.loads(subprocess.check_output(f"ibmcloud ks worker get --cluster {ibm_cluster} --worker {node} --output json", shell=True).decode('utf-8'))['state'] != 'normal':
+            time.sleep(10)
+
+
+def get_nodes(server_url):
+        ibm_cluster = get_ibm_cluster(server_url)
+        ks_cluster_nodes = subprocess.check_output("ibmcloud ks worker ls --cluster" + f' {ibm_cluster} ' + "-q | awk '{print $1}'", shell=True).decode('utf-8')  
+        cluster_nodes = ks_cluster_nodes.strip().split('\n')
+        return ibm_cluster, cluster_nodes
+
+def get_ibm_cluster(server_url):
+    ibm_cluster = ''
+    all_ibm_cloud_clusters = json.loads(subprocess.check_output("ibmcloud ks cluster ls -q --output json", shell=True).decode('utf-8'))
+    clusters_list = [cluster for cluster in all_ibm_cloud_clusters]
+    for cluster in clusters_list:
+        if cluster['serverURL'] == server_url:
+            ibm_cluster = cluster['name']
+    if ibm_cluster == '':        
+        print("ibm-cluster and openshift server do not match")
+    return ibm_cluster
+
+node_reload(args.server)
+
