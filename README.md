@@ -28,7 +28,7 @@ source ~/.bashrc
 #####	*Note ensure the url is up-to-date in the curl command below by going to the raw view of the node_reload_helper.sh file in the repo and copying the link.
 ```bash
 # Curl the helper script to added the node_reload utility directly to your path.
-curl -sSL https://raw.github.ibm.com/National-Northeast-1/Node-Reloader/main/node_reload?token=AACTOHMAOVWPT55S5CKN4GDDEOJG2 | bash
+curl -sSL https://raw.github.ibm.com/National-Northeast-1/Node-Reloader/main/node_reload_helper.sh?token=AACTOHP5D5DLHWK2272SOPDDESUX4 | bash
 
 # Source your profile
 source ~/.bashrc
