@@ -40,7 +40,7 @@ Must have python 3.6 or newer.
 ## Usage
 After installation or pulling the repo.
 
-1. First login to the ibmcloud cli using the command below.
+1. First login to the ibmcloud cli using the command below. Make sure you select the correct account relative to your openshift cluster.
 ```bash
 ibmcloud login --sso --no-region
 ``` 
